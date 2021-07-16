@@ -1,0 +1,17 @@
+[package]
+name = "bluejay"
+version = "1.0.0"
+license = "UNLICENSED"
+edition = "2018"
+exclude = ["index.node"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies.neon]
+version = "0.8.3"
+default-features = false
+features = ["napi-6"]
+
+[dependencies]
+itertools = "0.10.1"
