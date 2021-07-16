@@ -8,6 +8,8 @@ jobs:
     executor: win/default
     steps: 
       - checkout
+      - run: nvm use
+      - run: node -v
       - run:
           name: Install WiX
           command: choco install wixtoolset
