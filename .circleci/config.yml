@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build-windows:
+    executor: win/default
+    steps: 
+      - checkout
+      - run:
+          name: Install WiX
+          command: choco install wixtoolset
+      - run:
+          name: Install dependecies
+          command: yarn
+      - run:
+          name: Build Installer
+          command: yarn make
