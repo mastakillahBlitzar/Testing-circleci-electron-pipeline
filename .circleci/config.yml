@@ -7,7 +7,7 @@ jobs:
   build_windows:
     executor: win/default
     steps: 
-      - checkout:
+      - checkout
       - run: nvm install 14.17.1
       - run: nvm use 14.17.1
       - run: node -v

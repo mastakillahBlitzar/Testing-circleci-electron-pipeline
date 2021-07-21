@@ -11,15 +11,26 @@
     "scan": "electronegativity --electron-version 13.1.4 --input dist/",
     "start": "concurrently --kill-others \"yarn react:dev\" \"yarn electron:dev\"",
     "start:demo": "yarn start \"yarn demo-app:dev\"",
+    "build": "concurrently \"yarn build:electron\" \"yarn build:react\"",
+    "build:electron": "webpack --config webpack.electron.ts --mode=production",
+    "build:react": "webpack --config webpack.react.ts --mode=production",
+    "package": "yarn build && electron-forge package",
+    "make": "yarn build && electron-forge make",
     "test": "concurrently \"yarn test:unit\"",
     "test:unit": "jest src/**"
   },
   "author": "Commure",
   "license": "UNLICENSED",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.6",
     "@doyensec/electronegativity": "^1.9.1",
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.57",
+    "@electron-forge/maker-wix": "^6.0.0-beta.57",
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
@@ -32,8 +43,6 @@
     "node-loader": "^2.0.0",
     "nodemon": "^2.0.8",
     "prettier": "2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "sass": "^1.35.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.0.0",
@@ -51,5 +60,8 @@
       "package.json",
       "dist/**"
     ]
+  },
+  "config": {
+    "forge": "./forge.config.js"
   }
 }
