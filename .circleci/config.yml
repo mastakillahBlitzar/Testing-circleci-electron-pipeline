@@ -1,0 +1,34 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build_windows:
+    executor: win/default
+    steps: 
+      - checkout
+      - run: nvm install 14.17.1
+      - run: nvm use 14.17.1
+      - run: node -v
+      - run:
+          name: Install yarn
+          command: npm i --global yarn
+      - run: 
+          name: Install Rust
+          command: choco install rustup.install
+      - run:
+          name: Install WiX
+          command: choco install wixtoolset
+      - run:
+          name: Install dependecies
+          command: yarn
+      - run:
+          name: Build Installer
+          command: yarn make
+
+workflows: 
+  version: 2
+  build:
+    jobs:
+      - build_windows
