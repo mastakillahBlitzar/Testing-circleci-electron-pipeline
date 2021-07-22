@@ -21,6 +21,10 @@ jobs:
           name: Install WiX
           command: choco install wixtoolset
       - run:
+          name: add to path
+          command: export PATH=$PATH:"/c/Program Files (x86)/WiX Toolset v3.11.2/bin"
+          shell: bash.exe
+      - run:
           name: Install dependecies
           command: yarn
       - run:
